@@ -20,9 +20,22 @@ class MainActivity : AppCompatActivity() {
         displayTextView = findViewById(R.id.displayTextView)
         nameEditText = findViewById<EditText>(R.id.nameEditText)
 
+        fun validation(): Boolean {
+            var isValid = true
+
+            // Check if the name is blank
+            if (nameEditText.text.isEmpty()) {
+                nameEditText.setError("Name is required")
+                isValid = false
+            }
+
+            return isValid
+        }
+
         
         findViewById<Button>(R.id.clickMeButton).setOnClickListener {
-            displayTextView.text = "Hello, ${nameEditText.text}"
+            if (validation()) {displayTextView.text = "Hello, ${nameEditText.text}"}
+
         }
 
 
